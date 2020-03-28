@@ -1,8 +1,7 @@
 //Importando a conexao com o bd
 const connection = require('../database/connection');
 
-//Importando o crypto pra fazer a chave primaria de ong
-const crypto = require('crypto');
+const generateUniqueId = require('../utils/generateUniqueId');
 
 module.exports = {
 
@@ -18,7 +17,7 @@ module.exports = {
         //Request body
         const { name, email, whatsapp, city, uf } = request.body;
 
-        const id = crypto.randomBytes(4).toString('HEX');
+        const id = generateUniqueId();
 
         await connection('ongs').insert({
             id,
